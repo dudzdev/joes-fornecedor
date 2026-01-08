@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "elvis_agent": "src/agent/elvis.py:get"
+  },
+  "env": "../.env"
+}
