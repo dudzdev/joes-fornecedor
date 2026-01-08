@@ -4,13 +4,14 @@ import time
 from gspread.exceptions import APIError
 from pydantic import ValidationError
 
+from src import config
 from src.google.services import GoogleSheetsService
 from src.models import Product
 from src.pdf.services import PDFService
 
 
 if __name__ == '__main__':
-    pdf_pmg_file_location = "F:\\trampos\\Joes\\fornecedores\\pmg\\GERAL_0.pdf"
+    pdf_pmg_file_location = config.FILE_PATH
     pdf_service = PDFService(pdf_pmg_file_location)
     tables = pdf_service.read_tables(pages="all")
     table_count = 0
@@ -53,8 +54,8 @@ if __name__ == '__main__':
     google_sheet_service = GoogleSheetsService()
 
     worksheet = google_sheet_service.get_worksheet(
-        title="Base de Fornecedores",
-        folder_id="1WbdlvsFusX7x3zBsNx8KSDGD0Z-m8n2C"
+        title=config.WORKSHEET_NAME,
+        folder_id=config.WORKSHEET_FOLDER_ID
     )
 
     worksheet_head = [
